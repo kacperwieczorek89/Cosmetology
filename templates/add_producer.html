@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block page %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="name" name="name">
+        <select name="producttype_id" >
+               {% for pt in product_types %}
+                   <option value="{{pt.id}}"> {{ pt }}</option>
+               {% endfor %}
+            </select>
+        <input type="submit">
+
+    </form>
+{% endblock %}
