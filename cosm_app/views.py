@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views import View
@@ -25,7 +25,8 @@ class AddProducerView(View):
         name = request.POST.get('name')
         product_type_id=request.POST.get('producttype_id')
         product_type = ProductType.objects.get(id=product_type_id)
-        Producer.objects.create(name=name, product_type=product_type)
+        Producer.objects.create(name=name, product_types=product_type)
+        return redirect('add_producer')
 
 class AddProductTypeView(View):
     def get(self,request):
