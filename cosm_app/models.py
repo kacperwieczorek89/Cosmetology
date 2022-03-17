@@ -42,4 +42,4 @@ class Activity(models.Model):
     description = models.CharField(max_length=500)
 
     def __str__(self):
-        return f"Zabieg:{self.name} ; Cena: {self.price} PLN ; Czas wykonania:{self.time} min"
+        return f"Zabieg:{self.name} ; Cena: {self.price} PLN ; Czas wykonania:{self.time} min ; {self.description}"

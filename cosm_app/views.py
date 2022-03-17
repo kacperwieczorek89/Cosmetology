@@ -71,16 +71,16 @@ class AddActivityView(View):
         return render(request, 'add_activity.html', {'form': form})
 
     def post(self,request):
-        form = AddActivity()
+        form = AddActivity(request.POST)
         if form.is_valid():
             name = request.POST.get('name')
             price = request.POST.get('price')
             time = request.POST.get('time')
             description = request.POST.get('description')
-            Activity.objects.create(name=name,price=price,time=time,description=description)
-            return redirect('add_activity')
+            Activity.objects.create(name=name, price=price, time=time, description=description)
+        return redirect('activities')
 
 class ActivityView(View):
     def get(self,request):
         activities = Activity.objects.all()
-        return render(request,'activities.html', {'activities' : activities})
+        return render(request,'activities.html', {'activities': activities})
