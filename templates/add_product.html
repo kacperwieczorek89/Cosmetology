@@ -3,23 +3,21 @@
     <form method="post">
         {% csrf_token %}
         <input type="text" placeholder="name" name="name">
+        <input type="number" step="0.01" placeholder="Cena" name="price">
+
+        <select name="producer_id" >
+               {% for pd in producer %}
+                   <option value="{{pd.id}}"> {{ pd }}</option>
+               {% endfor %}
+            </select>
+
         <select name="producttype_id" >
                {% for pt in product_types %}
-                   <option value="{{pt.id}}"> {{ pt.product_type_plural }}</option>
+                   <option value="{{pt.id}}"> {{ pt }}</option>
                {% endfor %}
             </select>
         <input type="submit">
 
     </form>
-
-    <p>Producenci</p>
-    {% include 'list_view.html' with object_list=producers %}
-
-    <p> <ul>
-        {% for producer in object.producers.all %}
-            <li>{{ producer }}</li>
-        {% endfor %}
-        </ul>
-    </p>
 
 {% endblock %}
