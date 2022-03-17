@@ -22,5 +22,9 @@ urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('producers/', views.ProducerView.as_view(), name='producers'),
     path('add_producer/', views.AddProducerView.as_view(), name='add_producer'),
-    path('add_product_type/', views.AddProductTypeView.as_view(), name='add_product_type')
+    path('add_product_type/', views.AddProductTypeView.as_view(), name='add_product_type'),
+    path('add_product/', views.AddProductView.as_view(), name='add_product'),
+    path('products/', views.ProductView.as_view(), name='products'),
+    path('add_activity/', views.AddActivityView.as_view(), name='add_activity'),
+    path('activities/', views.ActivityView.as_view(), name='activities'),
 ]
