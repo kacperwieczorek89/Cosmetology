@@ -5,9 +5,9 @@
         <input type="text" placeholder="name" name="name">
         <input type="number" step="0.01" placeholder="Cena" name="price">
 
-        <select name="producer_id" >
+        <select  name="producer_id" >
                {% for pd in producer %}
-                   <option value="{{pd.id}}"> {{ pd }}</option>
+                   <option value="{{pd.id}}"> {{ pd.name }}</option>
                {% endfor %}
             </select>
 

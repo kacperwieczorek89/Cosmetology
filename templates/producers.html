@@ -3,11 +3,5 @@
     <p>Producenci</p>
     {% include 'list_view.html' with object_list=producers %}
 
-    <p> <ul>
-        {% for producer in object.producers.all %}
-            <li>{{ producer }}</li>
-        {% endfor %}
-        </ul>
-    </p>
 
 {% endblock %}

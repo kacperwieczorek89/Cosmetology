@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block page %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Nazwa zabiegu" name="name"><br>
+        <h5>Czynności</h5>
+        <select multiple name="activity" >
+               {% for activity in activities %}
+                   <option value="{{activity.id}}"> <b>{{ activity.name }} &nbsp;|&nbsp; {{ activity.time }}&nbsp;min &nbsp;|&nbsp;{{ activity.price }}&nbsp;PLN </option>
+               {% endfor %}
+        </select><br>
+        <h5>Wykorzystywane produkty</h5>
+        <select multiple name="product_id" >
+               {% for pd in products %}
+                   <option value="{{pd.id}}"> {{ pd }}</option>
+               {% endfor %}
+        </select><br>
+
+
+        <input type="submit">
+
+    </form>
+
+{% endblock %}
+
+{#{% extends 'base.html' %}#}
+{#{% block page %}#}
+{#    <form method="post">#}
+{#        {% csrf_token %}#}
+{#        <table>#}
+{#        {{ form.as_table }}#}
+{#        </table>#}
+{#        <input type="submit">#}
+{##}
+{#    </form>#}
+{#{% endblock %}#}

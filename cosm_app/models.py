@@ -1,6 +1,6 @@
 from django.db import models
 from polymorphic.models import PolymorphicModel
-
+from django.urls import reverse
 
 # Create your models here.
 class ProductType(models.Model):
@@ -15,7 +15,7 @@ class Producer(models.Model):
     product_types = models.ForeignKey(ProductType, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name} ; {self.product_types.product_type_plural}"
+        return f"{self.name} | {self.product_types}"
 
 
 class Product(PolymorphicModel):
@@ -42,4 +42,30 @@ class Activity(models.Model):
     description = models.CharField(max_length=500)
 
     def __str__(self):
-        return f"Zabieg:{self.name} ; Cena: {self.price} PLN ; Czas wykonania:{self.time} min ; {self.description}"
+        return f"Czynność:{self.name}  | Czas wykonania:{self.time} min | {self.description}"
+
+class Treatment(models.Model):
+    name = models.CharField(max_length=50)
+    products = models.ManyToManyField(Product, through='TreatmentProduct',)
+    activities = models.ManyToManyField(Activity, through='TreatmentActivity')
+    price = models.DecimalField(max_digits=6, decimal_places=2,null=True)
+
+
+    def __str__(self):
+        return f"{self.name} |{self.price}"
+
+    def get_absolute_url(self):
+        return reverse('treatment_detail_view',args=(self.pk,))
+
+class TreatmentProduct(models.Model):
+    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+
+class TreatmentActivity(models.Model):
+    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE)
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+
+
+
+
+

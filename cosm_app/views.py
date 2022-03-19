@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views import View
+from django.views.generic import DetailView
 
 from cosm_app.forms import AddProductType, AddActivity
-from cosm_app.models import Producer, ProductType, Product,Activity
+from cosm_app.models import Producer, ProductType, Product,Activity,Treatment
 
 
 class Index(View):
@@ -84,3 +85,45 @@ class ActivityView(View):
     def get(self,request):
         activities = Activity.objects.all()
         return render(request,'activities.html', {'activities': activities})
+
+class AddTreatmentView(View):
+    def get(self,request):
+        products = Product.objects.all()
+        activities = Activity.objects.all()
+        return render(request,'add_treatment.html',{'activities':activities,'products':products})
+
+    def post(self,request):
+        name = request.POST.get('name')
+        products = request.POST.getlist('product_id')
+        products_price = Product.objects.filter(id__in=products)
+        suma_p = 0
+        for p in products_price:
+            suma_p += p.price
+
+        activitys = request.POST.getlist('activity')
+        activitys_price = Activity.objects.filter(id__in=activitys)
+        suma_a =0
+        for a in activitys_price:
+            suma_a += a.price
+        suma_final = suma_a + suma_p
+
+        t = Treatment.objects.create(name=name, price=suma_final)
+        t.activities.set(activitys)
+        t.products.set(products)
+        return redirect('add_treatment')
+
+class TreatmentView(View):
+    def get(self,request):
+        treatments = Treatment.objects.all()
+        return render(request,'treatments.html', {'treatments': treatments})
+
+class PriceListView(View):
+
+    def get(self,request):
+        treats = Treatment.objects.all()
+
+        return render(request,'price_list.html',{'treats': treats})
+
+class TreatmentDetailView(DetailView):
+    model = Treatment
+    template_name = 'treatment_detail_view.html'
