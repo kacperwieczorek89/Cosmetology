@@ -1,10 +1,10 @@
 # Cosmetology  (Work in progress)
 
-## Application is intended for beauty studios. 
+## Application is intended for beauty studios.
 
-The project is intended to facilitate the creation of a price list of cosmetic treatments.
+This project is intended to facilitate the creation of a price list of cosmetic treatments.
 
-The program evaluates the cosmetic treatment based on its components, such as: used cosmetic preparations, accessories and performed activities.
+Program evaluates the cosmetic treatment based on its components, such as: used cosmetic preparations, accessories and performed activities.
 
 
-The intention for the future: redo using API and JavaScript.
+**Intention for the near future: redo using REST API and JavaScript.**
