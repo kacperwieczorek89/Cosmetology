@@ -1,6 +1,6 @@
 # Cosmetology  (Work in progress)
 
-##Application is intended for beauty studios. 
+## Application is intended for beauty studios. 
 
 The project is intended to facilitate the creation of a price list of cosmetic treatments.
 
