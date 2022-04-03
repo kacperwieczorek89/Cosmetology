@@ -6,16 +6,16 @@ from django.views.generic import DetailView
 
 from cosm_app.forms import AddProductType, AddActivity
 from cosm_app.models import Producer, ProductType, Product,Activity,Treatment
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-class Index(View):
+class Index(LoginRequiredMixin,View):
     def get(self, request):
         return render(request, 'base.html')
 
 class ProducerView(View):
     def get(self, request):
         producers = Producer.objects.all()
-        return render(request, 'producers.html', {'producers': producers})
+        return render(request, 'producers_view.html', {'producers': producers})
 
 class AddProducerView(View):
     def get(self,request):
@@ -84,7 +84,7 @@ class AddActivityView(View):
 class ActivityView(View):
     def get(self,request):
         activities = Activity.objects.all()
-        return render(request,'activities.html', {'activities': activities})
+        return render(request, 'activities_view.html', {'activities': activities})
 
 class AddTreatmentView(View):
     def get(self,request):

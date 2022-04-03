@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from cosm_app import views
 
 urlpatterns = [
@@ -30,5 +30,6 @@ urlpatterns = [
     path('add_treatment/', views.AddTreatmentView.as_view(), name='add_treatment'),
     path('treatments/', views.TreatmentView.as_view(), name='treatments'),
     path('price_list/', views.PriceListView.as_view(), name='price_list'),
-    path('treatment/<int:pk>/', views.TreatmentDetailView.as_view(), name='treatment_detail_view'),
+    path('price_list/<int:pk>/', views.TreatmentDetailView.as_view(), name='treatment_detail_view'),
+    path('accounts/', include('accounts.urls')),
 ]

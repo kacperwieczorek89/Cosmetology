@@ -2,7 +2,12 @@
 {% block page %}
     <p>{{ object.pk }}</p>
     <p>{{ object.name }}</p>
-    <p>{{ object.activities }}</p>
+    <p>
+    {% for activity in object.activities.all %}
+        <p>{{ activity }}</p>
+    {% endfor %}
+    </p>
+
     <p>{{ object.price }}</p>
 
 {% endblock %}

@@ -1,5 +1,9 @@
 {% extends 'base.html'%}
 {% block page %}
 <p>Cennik Zabiegów</p>
-{% include 'list_view2.html' with object_list=treats %}
+{% include 'list_view2.html' with objects_list=treats %}
+
+{% for obj in objects_list %}
+        <li><a href="{{ obj.get_absolute_url }}"> {{obj}}</a></li>
+{% endfor %}
 {% endblock %}

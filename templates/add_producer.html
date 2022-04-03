@@ -4,8 +4,8 @@
         {% csrf_token %}
         <input type="text" placeholder="name" name="name">
         <select name="producttype_id" >
-               {% for pt in product_types %}
-                   <option value="{{pt.id}}"> {{ pt.product_type_plural }}</option>
+               {% for product_type in product_types %}
+                   <option value="{{product_type.id}}"> {{ product_type.product_type_plural }}</option>
                {% endfor %}
             </select>
         <input type="submit">
